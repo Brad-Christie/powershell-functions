@@ -11,7 +11,6 @@ Function ConvertFrom-KebabCase {
   Process {
     Switch -Wildcard ($To) {
       "Camel*" {
-        $textInfo = (Get-Culture).TextInfo
         $evaluator = { $args.Groups[2].Value.ToUpper() }
         Return [regex]::Replace($InputObject, "(-)([a-z])", $evaluator)
       }
