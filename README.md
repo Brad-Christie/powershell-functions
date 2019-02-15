@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/5a93md0tm9wcqdsl?svg=true)](https://ci.appveyor.com/project/Brad-Christie/powershell-functions)
+
 Powershell-Functions
 ====================
 
