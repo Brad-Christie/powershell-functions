@@ -1,0 +1,25 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+
+install:
+  - ps: Write-Host Server version $(Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').BuildLabEx
+  - ps: Write-Host PowerShell version $PSVersionTable.PSVersion
+  - ps: Install-PackageProvider -Name NuGet -Force
+  - ps: Install-Module -Name PSScriptAnalyzer, Pester -Force -SkipPublisherCheck
+
+build_script:
+  - ps: Invoke-ScriptAnalyzer -Path .\src -Fix
+
+test_script:
+  - ps: |
+      $testResultsFile = ".\TestResults.xml"
+      $testResults = Invoke-Pester -Script .\src -OutputFormat NUnitXml -OutputFile $testResultsFile -PassThru
+      (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testResultsFile))
+      If ($testResults.FailedCount -gt 0) { 
+        throw "$($testResults.FailedCount) tests failed."
+      }
+
+notifications:
+  - provider: Slack
+    incoming_webhook:
+      secure: 6xD2ujsiPvtwxG7+lDge0d8+J7sJQjXcNZbUe2aiz7jOl1mSPDUPsISWu7mOYV9KB81PFyawE+csJ0H8j6sixUbc3j9CLK9bU9++I9J5S0E=
