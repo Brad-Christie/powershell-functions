@@ -4,9 +4,11 @@ Describe "New-EnvVar" -Tag "New", "EnvVar", "Docker" {
   BeforeAll {
     $script:OriginalPSDefaultParameterValues = $Global:PSDefaultParameterValues.Clone()
 
-    $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent()
-    If ($currentUser.Name -ne 'ContainerAdministrator') {
-      $Global:PSDefaultParameterValues["It:Skip"] = $true
+    If (!(Test-Path env:\APPVEYOR)) {
+      $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+      If ($currentUser.Name -ne 'ContainerAdministrator') {
+        $Global:PSDefaultParameterValues["It:Skip"] = $true
+      }
     }
   }
   AfterAll{
