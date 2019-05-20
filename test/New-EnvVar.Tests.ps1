@@ -1,4 +1,4 @@
-﻿. "${PSScriptRoot}\New-EnvVar.ps1"
+﻿. "${PSScriptRoot}\..\src\New-EnvVar.ps1"
 
 Describe "New-EnvVar" -Tag "New", "EnvVar", "Docker" {
   BeforeAll {

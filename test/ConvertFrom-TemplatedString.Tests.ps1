@@ -1,4 +1,4 @@
-. "${PSScriptRoot}\ConvertFrom-TemplatedString.ps1"
+. "${PSScriptRoot}\..\src\ConvertFrom-TemplatedString.ps1"
 
 Describe "ConvertFrom-TemplatedString" -Tag "Convert", "ConvertFrom", "TemplatedString" {
   Context "Basic Usage" {

@@ -1,4 +1,4 @@
-. "${PSScriptRoot}\ConvertFrom-SnakeCase.ps1"
+. "${PSScriptRoot}\..\src\ConvertFrom-SnakeCase.ps1"
 
 Describe "ConvertFrom-SnakeCase" -Tag "Convert", "ConvertFrom", "SnakeCase" {
   Context "snake_case to camelCase" {

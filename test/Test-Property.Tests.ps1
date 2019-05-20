@@ -1,8 +1,9 @@
-. "${PSScriptRoot}\Test-Property.ps1"
+﻿. "${PSScriptRoot}\..\src\Test-Property.ps1"
 
 Describe "Test-Property" -Tag "Test", "Property" {
   Context "Basic Usage" {
     BeforeAll {
+      # No good way to suppress PSUseDeclaredVarsMoreThanAssignments
       $obj = @{ Foo = "Bar" }
     }
     It "Should accept named parameters" {

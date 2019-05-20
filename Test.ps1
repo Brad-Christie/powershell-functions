@@ -13,12 +13,15 @@ If ($PSCmdlet.ParameterSetName -eq "__docker") {
   docker build .
 } Else {
   $src = "${PSScriptRoot}\src"
+  $test = "${PSScriptRoot}\test"
+
   If (!$SkipAnalysis) {
     Invoke-ScriptAnalyzer -Path $src -Fix
+    Invoke-ScriptAnalyzer -Path $test -Fix
   }
 
   $pesterParams = @{
-    Script = $src
+    Script = $test
     ExcludeTag = "Docker"
   }
   If ($null -ne $Filter) {

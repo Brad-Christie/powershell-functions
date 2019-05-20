@@ -1,4 +1,4 @@
-. "${PSScriptRoot}\ConvertFrom-CamelCase.ps1"
+. "${PSScriptRoot}\..\src\ConvertFrom-CamelCase.ps1"
 
 Describe "ConvertFrom-CamelCase" -Tag "Convert", "ConvertFrom", "CamelCase" {
   Context "camelCase to kebab-case" {

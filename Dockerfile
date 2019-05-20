@@ -11,4 +11,4 @@ WORKDIR /src
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference='Stop';"]
 # Import-Module -Name 'Pester', 'PSScriptAnalyzer' -Global ; `
-RUN Invoke-ScriptAnalyzer -Path '.\src' -Fix ; Invoke-Pester '.\src'
+RUN Invoke-ScriptAnalyzer -Path '.\src', '.\test' -Fix ; Invoke-Pester '.\test'
